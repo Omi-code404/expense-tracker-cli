@@ -51,13 +51,34 @@ def show_total(expenses):
         total[e['category']] = total.get(e['category'], 0) + e['amount']
     for category, amount in total.items():
         print(f"{category}: {amount}")
+def edit_expense(expenses):
+    view_all(expenses)
+    if not expenses:
+        return
+    try:
+        j = int(input("enter the index of the expense to edit: ")) - 1
+        edited_expense = []
+        for i,e in enumerate(expenses):
+            if i==j:
+                amount = float(input(f"enter new amonut :"))
+                category = input(f"enter new category :").title()
+                note = input(f"enter new note :")
+                new_expense = {"amount": amount, "category": category, "note": note}
+                edited_expense.append(new_expense)
+            else:
+                edited_expense.append(e)
+        expenses[:] = edited_expense
+        save_expenses(expenses)
+        print("Expense edited successfully.")
+    except ValueError:
+        print("Invalid input. Please enter a valid index.")
 print("For example")
 sample = [{"amount": 200, "category": "Food", "note": "Lunch"}]
 view_all(sample)
 def main():
     expenses = load_expenses()
     while True:
-        print("\n1. Add Expense\n2. View All\n3. Delete Expense\n4. Show Total\n5. Exit")
+        print("\n1. Add Expense\n2. View All\n3. Delete Expense\n4. Show Total\n5. Edit Expense\n6. Exit")
         choice = input("Choose: ")
         if choice == "1":
             add_expense(expenses)
@@ -68,6 +89,8 @@ def main():
         elif choice == "4":
             show_total(expenses)
         elif choice == "5":
+            edit_expense(expenses)
+        elif choice == "6":
             break
         else:
             print("❌ Invalid choice")
