@@ -72,13 +72,22 @@ def edit_expense(expenses):
         print("Expense edited successfully.")
     except ValueError:
         print("Invalid input. Please enter a valid index.")
+def search_by_category(expenses):
+    search_term = input("Enter category to search: ").strip().title()
+    found = False
+    for e in expenses:
+        if e['category'] == search_term:
+            print(f"{e['category']} - {e['amount']}  {e['note']}")
+            found = True
+    if not found:
+        print("No expenses found in this category.")
 print("For example")
 sample = [{"amount": 200, "category": "Food", "note": "Lunch"}]
 view_all(sample)
 def main():
     expenses = load_expenses()
     while True:
-        print("\n1. Add Expense\n2. View All\n3. Delete Expense\n4. Show Total\n5. Edit Expense\n6. Exit")
+        print("\n1. Add Expense\n2. View All\n3. Delete Expense\n4. Show Total\n5. Edit Expense\n6. Search by Category\n7. Exit")
         choice = input("Choose: ")
         if choice == "1":
             add_expense(expenses)
@@ -91,8 +100,10 @@ def main():
         elif choice == "5":
             edit_expense(expenses)
         elif choice == "6":
+            search_by_category(expenses)
+        elif choice == "7":
             break
         else:
-            print("❌ Invalid choice")
+            print("Invalid choice")
 if __name__ == "__main__":
     main()
