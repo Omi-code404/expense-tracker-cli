@@ -9,6 +9,7 @@ Add expenses, view them by category, and keep persistent records using JSON stor
 - View all recorded expenses
 - Delete an expense by its list number
 - Edit an existing expense's amount, category, or note
+- Search expenses by category
 - View category-wise totals (category names are normalized, so "food" and "Food" are treated the same)
 - Data automatically saved to a local JSON file
 - Basic input validation (handles invalid number entries gracefully)
@@ -38,7 +39,8 @@ Add expenses, view them by category, and keep persistent records using JSON stor
    3. Delete Expense
    4. Show Total
    5. Edit Expense
-   6. Exit
+   6. Search by Category
+   7. Exit
    ```
 
 ## Example Usage
@@ -66,7 +68,7 @@ expense-tracker-cli/
 ## What I Learned
 
 - File handling and persistent storage using JSON
-- Writing modular functions (load, save, add, view, delete, edit, totals)
+- Writing modular functions (load, save, add, view, delete, edit, search, totals)
 - Handling user input errors with try/except
 - Rebuilding a list in place using slice assignment (`expenses[:] = new_expenses`)
 - Aggregating values with a dictionary using `.get(key, default)`
@@ -75,7 +77,6 @@ expense-tracker-cli/
 
 ## Future Improvements
 
-- Search or filter expenses by category
 - Filter expenses by date
 - Export totals to a report
 
