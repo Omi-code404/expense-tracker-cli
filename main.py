@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import date
 File_Name="expenses.json"
 
 def load_expenses():
@@ -18,13 +19,13 @@ def view_all(expenses):
         return
     for i,e in enumerate(expenses,start=1):
         print(
-            f"{i}. {e['category']} - {e['amount']}  {e['note']}")
+            f"{i}. [{e.get('date', 'N/A')}] {e.get('category', 'N/A')} - {e['amount']}  {e['note']}")
 def add_expense(expenses):
     try:
         amount = float(input("Enter the amount: "))
         category = input("Enter the category: ").title()
         note = input("Enter a note (optional): ")
-        expense = {"amount": amount, "category": category, "note": note}
+        expense = {"amount": amount, "category": category, "note": note ,"date": str(date.today())}
         expenses.append(expense)
         save_expenses(expenses)
         print("Expense added successfully.")
@@ -63,7 +64,8 @@ def edit_expense(expenses):
                 amount = float(input(f"enter new amonut :"))
                 category = input(f"enter new category :").title()
                 note = input(f"enter new note :")
-                new_expense = {"amount": amount, "category": category, "note": note}
+                date_value = str(date.today())
+                new_expense = {"amount": amount, "category": category, "note": note, "date": date_value}
                 edited_expense.append(new_expense)
             else:
                 edited_expense.append(e)
