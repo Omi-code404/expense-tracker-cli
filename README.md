@@ -6,6 +6,7 @@ Add expenses, view them by category, and keep persistent records using JSON stor
 ## Features
 
 - Add new expenses with amount, category, and note
+- Each expense is automatically stamped with the date it was added
 - View all recorded expenses
 - Delete an expense by its list number
 - Edit an existing expense's amount, category, or note
@@ -52,6 +53,9 @@ Enter the category: Food
 Enter a note (optional): Lunch
 Expense added successfully.
 
+Choose: 2
+1. [2026-09-20] Food - 200.0  Lunch
+
 Choose: 4
 Food: 200.0
 ```
@@ -73,11 +77,12 @@ expense-tracker-cli/
 - Rebuilding a list in place using slice assignment (`expenses[:] = new_expenses`)
 - Aggregating values with a dictionary using `.get(key, default)`
 - Normalizing text input (`.strip().title()`) to avoid case-sensitivity bugs
+- Working with Python's `datetime` module and avoiding variable name shadowing
 - Using Git and GitHub for version control
 
 ## Future Improvements
 
-- Filter expenses by date
+- Filter expenses by a specific date or date range
 - Export totals to a report
 
 ## Author
