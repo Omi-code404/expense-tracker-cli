@@ -83,13 +83,26 @@ def search_by_category(expenses):
             found = True
     if not found:
         print("No expenses found in this category.")
-print("For example")
-sample = [{"amount": 200, "category": "Food", "note": "Lunch"}]
-view_all(sample)
+def export_report(expenses):
+    if not expenses:
+        print("No expenses to export.")
+        return
+    total = {}
+    for e in expenses:
+        total[e['category']] = total.get(e['category'], 0) + e['amount']
+
+    with open("report.txt", "w") as f:
+        f.write("Expense Report\n")
+        f.write("=" * 20 + "\n\n")
+        for category, amount in total.items():
+            f.write(f"{category}: {amount}\n")
+        f.write(f"\nGrand Total: {sum(total.values())}\n")
+
+    print("Report exported to report.txt")
 def main():
     expenses = load_expenses()
     while True:
-        print("\n1. Add Expense\n2. View All\n3. Delete Expense\n4. Show Total\n5. Edit Expense\n6. Search by Category\n7. Exit")
+        print("\n1. Add Expense\n2. View All\n3. Delete Expense\n4. Show Total\n5. Edit Expense\n6. Search by Category\n7. Export Report\n8. Exit")
         choice = input("Choose: ")
         if choice == "1":
             add_expense(expenses)
@@ -104,6 +117,9 @@ def main():
         elif choice == "6":
             search_by_category(expenses)
         elif choice == "7":
+            export_report(expenses)
+        elif choice == "8":
+            print("Exiting...")
             break
         else:
             print("Invalid choice")
