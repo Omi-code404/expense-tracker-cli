@@ -12,13 +12,14 @@ Add expenses, view them by category, and keep persistent records using JSON stor
 - Edit an existing expense's amount, category, or note
 - Search expenses by category
 - View category-wise totals (category names are normalized, so "food" and "Food" are treated the same)
+- Export a summary report (category totals + grand total) to `report.txt`
 - Data automatically saved to a local JSON file
 - Basic input validation (handles invalid number entries gracefully)
 
 ## Tech Stack
 
 - Python 3
-- Built-in `json` and `os` modules (no external dependencies)
+- Built-in `json`, `os`, and `datetime` modules (no external dependencies)
 
 ## How to Run
 
@@ -41,7 +42,8 @@ Add expenses, view them by category, and keep persistent records using JSON stor
    4. Show Total
    5. Edit Expense
    6. Search by Category
-   7. Exit
+   7. Export Report
+   8. Exit
    ```
 
 ## Example Usage
@@ -58,6 +60,9 @@ Choose: 2
 
 Choose: 4
 Food: 200.0
+
+Choose: 7
+Report exported to report.txt
 ```
 
 ## Project Structure
@@ -72,18 +77,19 @@ expense-tracker-cli/
 ## What I Learned
 
 - File handling and persistent storage using JSON
-- Writing modular functions (load, save, add, view, delete, edit, search, totals)
+- Writing modular functions (load, save, add, view, delete, edit, search, totals, export)
 - Handling user input errors with try/except
 - Rebuilding a list in place using slice assignment (`expenses[:] = new_expenses`)
 - Aggregating values with a dictionary using `.get(key, default)`
 - Normalizing text input (`.strip().title()`) to avoid case-sensitivity bugs
 - Working with Python's `datetime` module and avoiding variable name shadowing
+- Writing plain text to a separate file with `f.write()`
 - Using Git and GitHub for version control
 
 ## Future Improvements
 
 - Filter expenses by a specific date or date range
-- Export totals to a report
+- Sort expenses by amount or date
 
 ## Author
 
