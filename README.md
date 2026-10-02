@@ -91,6 +91,9 @@ expense-tracker-cli/
 - Filter expenses by a specific date or date range
 - Sort expenses by amount or date
 
+## Using main repo for practicing open source cortribution
+Learning Git and GitHub step by step
+
 ## Author
 
 Amlan — B.Sc Applied Mathematics student
